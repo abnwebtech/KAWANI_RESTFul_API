@@ -18,6 +18,7 @@ class Employees extends REST_Controller {
     {
         parent::__construct();
         $this->load->model('employee_model');
+        // test commit
     }
 
     /**
