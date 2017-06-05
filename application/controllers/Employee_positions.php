@@ -26,6 +26,6 @@ class Employee_positions extends CI_Controller {
 
     public function index()
     {
-        
+        echo 'employee positions';
     }
 }
