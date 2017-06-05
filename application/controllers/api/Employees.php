@@ -47,7 +47,7 @@ class Employees extends REST_Controller {
             ], REST_Controller::HTTP_OK);
         }
     }
-    
+  
     public function index_post() {
         $post = $this->input->post();
         $last_id = $this->employee_model->insert($post);
