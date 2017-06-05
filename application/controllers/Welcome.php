@@ -20,6 +20,11 @@ class Welcome extends CI_Controller {
 	 */
 	public function index()
 	{
+		$this->load->library('ion_auth');
+
+		$msg = ( ! $this->ion_auth->logged_in()) ? 'not logged in!' : 'already logged in!';
+		var_dump($msg);
+		
 		$this->load->view('welcome_message');
 	}
 }

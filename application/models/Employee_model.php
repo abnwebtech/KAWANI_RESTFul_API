@@ -16,4 +16,14 @@ class Employee_model extends MY_Model {
     protected $primary_key = 'id';
     protected $return_type = 'array';
 
+    /**
+     * Callbacks or Observers
+     */
+    protected $before_create = ['generate_date_created'];
+
+    protected function generate_date_created($employee)
+    {
+        $employee['date_created'] = date('Y-m-d H:i:s');
+        return $employee;
+    }
 }
