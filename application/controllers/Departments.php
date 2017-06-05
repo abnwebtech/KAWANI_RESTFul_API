@@ -28,4 +28,9 @@ class Departments extends CI_Controller {
     {
         echo 'departments component';
     }
+
+    public function add()
+    {
+        echo 'add new department';
+    }
 }
