@@ -30,7 +30,8 @@ class Employees extends REST_Controller {
     public function index_get()
     {
         $employee_id = $this->uri->segment(3);
-        $employee = $this->employee_model->get_by(['id' => $employee_id]);
+        // $employee = $this->employee_model->get_by(['id' => $employee_id]);
+        $employee = $this->employee_model->get_all();
 
         if (isset($employee['id'])) {
             $this->response([
@@ -46,6 +47,10 @@ class Employees extends REST_Controller {
             ], REST_Controller::HTTP_OK);
         }
     }
-
-
+  
+    public function index_post() {
+        $post = $this->input->post();
+        $last_id = $this->employee_model->insert($post);
+        var_dump($last_id);
+    }
 }
