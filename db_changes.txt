@@ -1,0 +1,3 @@
+Fieldname alteration; 20170606
+
+ALTER TABLE `employee_positions` CHANGE `postion_id` `position_id` INT(16) UNSIGNED NOT NULL;

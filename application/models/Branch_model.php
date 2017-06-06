@@ -10,20 +10,22 @@ defined('BASEPATH') OR exit('No direct script access allowed');
  * @author      cristhian.kevin@systemantech.com
  * @link        http://systemantech.com
  */
-class Employee_model extends MY_Model {
+class Branch_model extends MY_Model {
 
-    protected $_table = 'employees';
+    protected $_table = 'branches';
     protected $primary_key = 'id';
     protected $return_type = 'array';
 
     /**
      * Callbacks or Observers
      */
-    protected $before_create = ['generate_date_created'];
+    protected $before_create = ['generate_date_created_status'];
 
-    protected function generate_date_created($employee)
+    protected function generate_date_created_status($branch)
     {
-        $employee['created'] = date('Y-m-d H:i:s');
-        return $employee;
+        $branch['created'] = date('Y-m-d H:i:s');
+        $branch['active_status'] = 1;
+        $branch['created_by'] = '0';
+        return $branch;
     }
 }
