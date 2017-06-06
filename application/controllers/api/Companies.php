@@ -31,9 +31,12 @@ class Companies extends REST_Controller {
     public function index_get()
     {
         $company_id = $this->uri->segment(3);
-        // $employee = $this->employee_model->get_by(['id' => $employee_id]);
-        // $company = $this->company_model->get_all();
-        $company = $this->response($this->db->get('companies')->result());
+
+        if ( ! empty($company_id) ) {
+            $company = $this->company_model->get_by(['id' => $company_id]);
+        } else {
+            $company = $this->company_model->get_all();
+        }
 
         if (isset($company['id'])) {
             $this->response([

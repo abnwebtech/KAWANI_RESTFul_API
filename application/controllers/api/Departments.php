@@ -31,8 +31,12 @@ class Departments extends REST_Controller {
     public function index_get()
     {
         $department_id = $this->uri->segment(3);
-        // $employee = $this->employee_model->get_by(['id' => $employee_id]);
-        $department = $this->department_model->get_all();
+
+        if ( ! empty($department_id) ) {
+            $department = $this->department_model->get_by(['id' => $department_id]);
+        } else {
+            $department = $this->department_model->get_all();
+        }
 
         if (isset($department['id'])) {
             $this->response([

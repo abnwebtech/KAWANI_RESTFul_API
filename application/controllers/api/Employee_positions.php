@@ -31,8 +31,12 @@ class Employee_positions extends REST_Controller {
     public function index_get()
     {
         $employee_position_id = $this->uri->segment(3);
-        // $employee = $this->employee_model->get_by(['id' => $employee_id]);
-        $employee_position = $this->employee_position_model->get_all();
+
+        if ( ! empty($employee_position_id) ) {
+            $employee_position = $this->employee_position_model->get_by(['id' => $employee_position_id]);
+        } else {
+            $employee_position = $this->employee_position_model->get_all();
+        }
 
         if (isset($employee_position['id'])) {
             $this->response([
