@@ -31,8 +31,12 @@ class Educational_attainments extends REST_Controller {
     public function index_get()
     {
         $educational_attainment_id = $this->uri->segment(3);
-        // $employee = $this->employee_model->get_by(['id' => $employee_id]);
-        $educational_attainment = $this->educational_attainment_model->get_all();
+
+        if ( ! empty($educational_attainment_id) ) {
+            $educational_attainment = $this->educational_attainment_model->get_by(['id' => $educational_attainment_id]);
+        } else {
+            $educational_attainment = $this->educational_attainment_model->get_all();
+        }
 
         if (isset($educational_attainment['id'])) {
             $this->response([
