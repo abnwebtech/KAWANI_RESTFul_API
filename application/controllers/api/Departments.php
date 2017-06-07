@@ -34,13 +34,16 @@ class Departments extends REST_Controller {
         // $employee = $this->employee_model->get_by(['id' => $employee_id]);
         $department = $this->department_model->get_all();
 
-        if (isset($department['id'])) {
+        if (isset($department['id']))
+        {
             $this->response([
                 'status'  => 'success',
                 'message' => 'Successfully get data!',
                 'result'    => $department
             ]);
-        } else {
+        }
+        else
+        {
             $this->response([
                 'status'  => 'success',
                 'message' => 'Successfully get data!',
@@ -49,7 +52,8 @@ class Departments extends REST_Controller {
         }
     }
 
-    public function index_post() {
+    public function index_post()
+    {
         $post = $this->input->post();
         $last_id = $this->department_model->insert($post);
         var_dump($last_id);

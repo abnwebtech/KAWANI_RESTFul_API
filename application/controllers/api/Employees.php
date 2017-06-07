@@ -33,13 +33,16 @@ class Employees extends REST_Controller {
         // $employee = $this->employee_model->get_by(['id' => $employee_id]);
         $employee = $this->employee_model->get_all();
 
-        if (isset($employee['id'])) {
+        if (isset($employee['id']))
+        {
             $this->response([
                 'status'  => 'success',
                 'message' => 'Successfully get data!',
                 'data'    => $employee
             ]);
-        } else {
+        }
+        else
+        {
             $this->response([
                 'status'  => 'success',
                 'message' => 'Successfully get data!',
@@ -47,8 +50,9 @@ class Employees extends REST_Controller {
             ], REST_Controller::HTTP_OK);
         }
     }
-  
-    public function index_post() {
+
+    public function index_post()
+    {
         $post = $this->input->post();
         $last_id = $this->employee_model->insert($post);
         var_dump($last_id);

@@ -34,13 +34,16 @@ class Employment_types extends REST_Controller {
         // $employee = $this->employee_model->get_by(['id' => $employee_id]);
         $employment_type = $this->employment_type_model->get_all();
 
-        if (isset($employment_type['id'])) {
+        if (isset($employment_type['id']))
+        {
             $this->response([
                 'status'  => 'success',
                 'message' => 'Successfully get data!',
                 'result'    => $employment_type
             ]);
-        } else {
+        }
+        else
+        {
             $this->response([
                 'status'  => 'success',
                 'message' => 'Successfully get data!',
@@ -49,7 +52,8 @@ class Employment_types extends REST_Controller {
         }
     }
 
-    public function index_post() {
+    public function index_post()
+    {
         $post = $this->input->post();
         $last_id = $this->employment_type_model->insert($post);
         var_dump($last_id);
