@@ -31,8 +31,12 @@ class Branches extends REST_Controller {
     public function index_get()
     {
         $branch_id = $this->uri->segment(3);
-        // $employee = $this->employee_model->get_by(['id' => $employee_id]);
-        $branch = $this->branch_model->get_all();
+
+        if ( ! empty($branch_id) ) {
+            $branch = $this->branch_model->get_by(['id' => $branch_id]);
+        } else {
+            $branch = $this->branch_model->get_all();
+        }
 
         if (isset($branch['id']))
         {

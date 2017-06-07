@@ -31,8 +31,12 @@ class Employment_types extends REST_Controller {
     public function index_get()
     {
         $employment_type_id = $this->uri->segment(3);
-        // $employee = $this->employee_model->get_by(['id' => $employee_id]);
-        $employment_type = $this->employment_type_model->get_all();
+
+        if ( ! empty($employment_type_id) ) {
+            $employment_type = $this->employment_type_model->get_by(['id' => $employment_type_id]);
+        } else {
+            $employment_type = $this->employment_type_model->get_all();
+        }
 
         if (isset($employment_type['id']))
         {
