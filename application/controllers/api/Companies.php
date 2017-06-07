@@ -33,10 +33,11 @@ class Companies extends REST_Controller {
         $company_id = $this->uri->segment(3);
 
         if ( ! empty($company_id) ) {
-            $company = $this->company_model->get_by(['id' => $company_id]);
+            $company = $this->company_model->get_company_details(['company.id' => $company_id]);
         } else {
-            $company = $this->company_model->get_all();
+            $company = $this->company_model->get_companies_with_details();
         }
+        // $this->response($this->db->last_query());
 
         if (isset($company['id'])) {
             $this->response([

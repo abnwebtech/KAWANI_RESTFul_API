@@ -16,9 +16,6 @@ class Company_model extends MY_Model {
     protected $primary_key = 'id';
     protected $return_type = 'array';
 
-    /**
-     * Callbacks or Observers
-     */
     protected $before_create = ['generate_date_created_status'];
 
     protected function generate_date_created_status($company)
@@ -27,5 +24,31 @@ class Company_model extends MY_Model {
         $company['active_status'] = 1;
         $company['created_by'] = '0';
         return $company;
+    }
+
+    public function get_company_details($param) {
+
+        $this->db->select('
+                    company.registered_name as registered_name,
+                    branch.name as branch_name,
+                    branch.description as branch_description
+                    ')
+                ->from('companies as company')
+                ->join('branches as branch', 'company.id = branch.id', 'left');
+
+        return $this->get_by($param);
+    }
+
+    public function get_companies_with_details() {
+
+        $this->db->select('
+                    company.registered_name as registered_name,
+                    branch.name as branch_name,
+                    branch.description as branch_description
+                    ')
+                ->from('companies as company')
+                ->join('branches as branch', 'company.id = branch.id', 'left');
+
+        return $this->get_all();
     }
 }
