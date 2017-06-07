@@ -38,13 +38,16 @@ class Branches extends REST_Controller {
             $branch = $this->branch_model->get_all();
         }
 
-        if (isset($branch['id'])) {
+        if (isset($branch['id']))
+        {
             $this->response([
                 'status'  => 'success',
                 'message' => 'Successfully get data!',
                 'result'    => $branch
             ]);
-        } else {
+        }
+        else
+        {
             $this->response([
                 'status'  => 'success',
                 'message' => 'Successfully get data!',
@@ -53,7 +56,8 @@ class Branches extends REST_Controller {
         }
     }
 
-    public function index_post() {
+    public function index_post()
+    {
         $post = $this->input->post();
         $last_id = $this->branch_model->insert($post);
         var_dump($last_id);
