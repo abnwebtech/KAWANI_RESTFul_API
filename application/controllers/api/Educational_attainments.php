@@ -38,13 +38,16 @@ class Educational_attainments extends REST_Controller {
             $educational_attainment = $this->educational_attainment_model->get_all();
         }
 
-        if (isset($educational_attainment['id'])) {
+        if (isset($educational_attainment['id']))
+        {
             $this->response([
                 'status'  => 'success',
                 'message' => 'Successfully get data!',
                 'result'    => $educational_attainment
             ]);
-        } else {
+        }
+        else
+        {
             $this->response([
                 'status'  => 'success',
                 'message' => 'Successfully get data!',
@@ -53,7 +56,8 @@ class Educational_attainments extends REST_Controller {
         }
     }
 
-    public function index_post() {
+    public function index_post()
+    {
         $post = $this->input->post();
         $last_id = $this->educational_attainment_model->insert($post);
         var_dump($last_id);

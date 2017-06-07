@@ -16,38 +16,36 @@ class Company_model extends MY_Model {
     protected $primary_key = 'id';
     protected $return_type = 'array';
 
-    protected $before_create = ['generate_date_created_status'];
+    /**
+     * Callbacks or Observers
+     */
+    protected $before_create = [
+        'set_default_data'
+    ];
 
-    protected function generate_date_created_status($company)
+    protected function set_default_data($company)
     {
-        $company['created'] = date('Y-m-d H:i:s');
+        $company['created']       = date('Y-m-d H:i:s');
         $company['active_status'] = 1;
-        $company['created_by'] = '0';
+        $company['created_by']    = 0;
+
         return $company;
     }
 
-    public function get_company_details($param) {
-
-        $this->db->select('
-                    company.registered_name as registered_name,
-                    branch.name as branch_name,
-                    branch.description as branch_description
-                    ')
-                ->from('companies as company')
-                ->join('branches as branch', 'company.id = branch.id', 'left');
+    public function get_company_by($param)
+    {
+        $query = $this->db;
+        $query->select('companies.*, branches.name as branch_name');
+        $query->join('branches', 'companies.id = branches.company_id', 'left');
 
         return $this->get_by($param);
     }
 
-    public function get_companies_with_details() {
-
-        $this->db->select('
-                    company.registered_name as registered_name,
-                    branch.name as branch_name,
-                    branch.description as branch_description
-                    ')
-                ->from('companies as company')
-                ->join('branches as branch', 'company.id = branch.id', 'left');
+    public function get_company_all()
+    {
+        $query = $this->db;
+        $query->select('companies.*, branches.name as branch_name');
+        $query->join('branches', 'companies.id = branches.company_id', 'left');
 
         return $this->get_all();
     }
